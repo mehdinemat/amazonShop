@@ -1,7 +1,7 @@
 import React from 'react'
-import {login} from '../actions/auth'
+import { auth } from './auth' 
 import { combineReducers } from 'redux'
 
 export default combineReducers({
-  login
+  auth
 })
