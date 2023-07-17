@@ -5,15 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import dataProvider from './redux/store';
+import DataProvider from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <dataProvider>
-      <ChakraProvider>
-    <App />
-  </ChakraProvider>
-    </dataProvider>
+  <DataProvider>
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
+  </DataProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
