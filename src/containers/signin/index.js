@@ -10,12 +10,8 @@ const Signin = () => {
   const  dispatch = useDispatch()
 
   const handleSingInForm = (data)=>{
-      const user = {
-        email:'salam@gmail.com',
-        password:'123456'
-      }
-
-      dispatch(login(user))
+    
+      dispatch(login(data))
   }
 
   return (
