@@ -24,7 +24,7 @@ export const login = (data)=>async(dispatch)=>{
 
 }
 
-const isUserLoggedIn = (data)=>async(dispatch)=>{
+export const isUserLoggedIn = (data)=>async(dispatch)=>{
 
    try{
          const token = localStorage.getItem('token')

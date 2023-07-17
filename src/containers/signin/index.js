@@ -2,7 +2,7 @@ import { Button, Center, Input, VStack } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import {useForm} from 'react-hook-form'
 import Layout from '../../components/Layout'
-import { login } from '../../redux/actions/auth'
+import { login , isUserLoggedIn } from '../../redux/actions/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 const Signin = () => {
@@ -11,9 +11,12 @@ const Signin = () => {
   const  dispatch = useDispatch()
   const {auth} = useSelector(state=>state)
 
+  useEffect(()=>{
+    dispatch(isUserLoggedIn())
+  },[])
   
   useEffect(()=>{
-     
+     console.log('stepone')
     if(auth?.authenticate){
       navigate('/')
     }
