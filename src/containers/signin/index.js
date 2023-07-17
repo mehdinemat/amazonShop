@@ -1,13 +1,24 @@
 import { Button, Center, Input, VStack } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useForm} from 'react-hook-form'
 import Layout from '../../components/Layout'
 import { login } from '../../redux/actions/auth'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 const Signin = () => {
-
+  const navigate = useNavigate()
   const {register , handleSubmit , setValue , getValues } = useForm()
   const  dispatch = useDispatch()
+  const {auth} = useSelector(state=>state)
+
+  
+  useEffect(()=>{
+     
+    if(auth?.authenticate){
+      navigate('/')
+    }
+    
+  } , [auth?.authenticate])
 
   const handleSingInForm = (data)=>{
     

@@ -12,18 +12,16 @@ const initialState = {
   authenticating:false
 }
 
-export const auth = (state=initialState , action)=>(dispatch)=>{
+export const auth = (state=initialState , action)=>{
     switch(action.type){
       case authConstants.LOGIN_REQUEST:
-        state = {
+        return{
           ...state , authenticating:true
         }
-        break;
         case authConstants.LOGIN_SUCCESS:
-          state={
+          return {
             ...state,user:action.payload.user , token:action.payload.token , authenticating:false, authenticate:true
           }
-          break;
       default:
        return {...state}
     }
