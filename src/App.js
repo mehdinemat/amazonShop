@@ -6,12 +6,13 @@ import { BrowserRouter as Router , Route , Routes } from 'react-router-dom';
 import Home from './containers/home'
 import Signin from './containers/signin';
 import SignUp from './containers/signup'
+import PrivateRoute from './components/HOC/privateRoute';
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/' element={<Home/>} />
+          <Route path='/' extact element={<PrivateRoute><Home/></PrivateRoute>} />
           <Route path='/signin' element={<Signin/>} />
           <Route path='/signup' element={<SignUp/>} />
         </Routes>
