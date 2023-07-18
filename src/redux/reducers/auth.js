@@ -22,6 +22,10 @@ export const auth = (state=initialState , action)=>{
           return {
             ...state,user:action.payload.user , token:action.payload.token , authenticating:false, authenticate:true
           }
+          case authConstants.SIGNOUT_REQUEST:
+            return {
+              ...state, initialState
+            }
       default:
        return {...state}
     }
