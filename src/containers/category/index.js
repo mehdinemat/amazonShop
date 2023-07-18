@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { categories } from '../../redux/actions/category'
 import {
   ListItem,
-  OrderedList, Button, useDisclosure
+  OrderedList, Button, useDisclosure, HStack
 } from '@chakra-ui/react'
 
 import CategoryModal from '../../components/modals/categoryModal'
@@ -35,13 +35,15 @@ const Index = () => {
 
 
 
+
   return (
     <Home>
-        <CategoryModal
+      <CategoryModal
         isOpen={isOpen}
-        onClose={onClose} />
-      <Button onClick={onOpen}>Open Modal</Button>
+        onClose={onClose} category={category?.categories} />
 
+      <HStack w={'100%'} justifyContent={'space-between'} alignItems={'start'}>
+     
       <OrderedList>
         {
           category && category?.categories.map((item) => (
@@ -49,6 +51,12 @@ const Index = () => {
           ))
         }
       </OrderedList>
+      <Button onClick={onOpen} backgroundColor={'white'} border={'1px'} borderColor={'blackAlpha.300'} _hover={{
+        bg: 'cyan.400',
+        color: 'white',
+      }}>افزودن عنوان</Button>
+
+      </HStack>
 
     </Home>
   )
