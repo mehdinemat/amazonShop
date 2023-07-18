@@ -13,20 +13,17 @@ const CategoryModal = (props) => {
 
 
 
-  const renderedCategoryList = (category) => {
-    let categoryList = []
-    console.log(category)
-    for (let cat of category) {
-      categoryList.push(cat.name)
-      { cat.children.length > 0 && renderedCategoryList(cat) }
-    }
+  const renderedCategoryList = (category , categoryList=[]) => {
+   
+    // for (let cat of category) {
+    //   categoryList.push(cat.name)
+    //   {  renderedCategoryList(cat , categoryList) }
+    // }
     return categoryList
   }
   const catList = renderedCategoryList(props.category)
 
-  useEffect(() => {
-    console.log(catList)
-  }, [catList])
+ 
 
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose} >
