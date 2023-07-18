@@ -1,13 +1,11 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import { Center } from '@chakra-ui/react'
-
+import Sidebar from '../../components/Sidebar'
 const Home = () => {
   return (
     <Layout>
-    <Center height={'90vh'}>
-    <h1>داشبور مدیریت</h1>
-    </Center>
+      <Sidebar/>
     </Layout>
   )
 }
