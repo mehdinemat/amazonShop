@@ -13,3 +13,9 @@ export const userConstants = {
   REGISTER_FAILURE: 'REGISTER_FAILURE'
 
 }
+
+export const categoryConstants ={
+  CATEGORY_REQURES : 'CATEGORY_REQUEST',
+  CATEGORY_SUCCESS : 'CATEGORY_SUCCESS',
+  CATEGORY_FAILURE : 'CATEGORY_FAILURE'
+}
