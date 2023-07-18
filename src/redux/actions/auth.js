@@ -43,3 +43,10 @@ export const isUserLoggedIn = (data)=>async(dispatch)=>{
    }catch(err){  dispatch({type:authConstants.LOGIN_FAILURE , payload:{error:err.message} }) }
 
 }
+
+export const signOut = (data)=>async(dispatch)=>{
+   try{
+
+
+   }catch(err){return dispatch({type:authConstants.SIGNOUT_FAILURE , payload:{error:err.message} })}
+}

@@ -34,7 +34,7 @@ const LinkItems = [
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh">
+    <Box minH="90vh" dir='rtl'  >
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
@@ -42,18 +42,20 @@ export default function SimpleSidebar({ children }) {
       <Drawer
         autoFocus={false}
         isOpen={isOpen}
-        placement="left"
+        placement="right"
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
         size="full">
-        <DrawerContent>
+          
+
+        <DrawerContent >
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p="4" mr={'15%'}>
         {children}
       </Box>
     </Box>
@@ -64,7 +66,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
       bg={useColorModeValue('white', 'gray.900')}
-      borderRight="1px"
+      borderLeft="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
       pos="fixed"
