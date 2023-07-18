@@ -49,6 +49,8 @@ export const signOut = (data)=>async(dispatch)=>{
 
       dispatch({type:authConstants.SIGNOUT_REQUEST})
       const res= await axios.post('/admin/signout')
+      const {msg} = res.data
+      dispatch({type:authConstants.SIGNOUT_SUCCESS , payload:{msg}})
       localStorage.clear()
 
    }catch(err){return dispatch({type:authConstants.SIGNOUT_FAILURE , payload:{error:err.message} })}

@@ -9,7 +9,10 @@ const initialState = {
     picture:''
   },
   authenticate:false,
-  authenticating:false
+  authenticating:false,
+  loading:false , 
+  error:'',
+  message:''
 }
 
 export const auth = (state=initialState , action)=>{
@@ -24,8 +27,16 @@ export const auth = (state=initialState , action)=>{
           }
           case authConstants.SIGNOUT_REQUEST:
             return {
+              ...state , loading:true
+            }
+          case authConstants.SIGNOUT_SUCCESS:
+            return {
                ...initialState
             }
+            case authConstants.SIGNOUT_FAILURE:
+              return {
+                ...state , error:action.payload.error
+              }
       default:
        return {...state}
     }

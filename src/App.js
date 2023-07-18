@@ -6,6 +6,8 @@ import { BrowserRouter as Router , Route , Routes , Navigate } from 'react-route
 import Home from './containers/home'
 import Signin from './containers/signin';
 import SignUp from './containers/signup'
+import Products from './containers/products'
+import Orders from './containers/orders'
 import PrivateRoute from './components/HOC/privateRoute';
 import { useSelector , useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -26,6 +28,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' extact element={<PrivateRoute><Home/></PrivateRoute>} />
+          <Route path='/products' element={<Products/>}/>
+          <Route path='/orders' element={<Orders/>}/>
           <Route path='/signin' element={<Signin/>} />
           <Route path='/signup' element={<SignUp/>} />
         </Routes>
