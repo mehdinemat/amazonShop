@@ -24,9 +24,10 @@ import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 
 const LinkItems = [
-  { name: 'خانه', icon: FiHome },
-  { name: 'محصولات', icon: FiTrendingUp },
-  { name: 'سفارشات', icon: FiCompass },
+  { name: 'خانه', icon: FiHome , link:'/' },
+  { name: 'محصولات', icon: FiTrendingUp , link:'/products' },
+  { name: 'سفارشات', icon: FiCompass , link:'/orders' },
+  { name: 'عنوان ها', icon: FiCompass , link:'/category' },
 ];
 
 export default function SimpleSidebar({ children }) {
@@ -76,17 +77,17 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name}  icon={link.icon}>
-          <Text fontSize={14}>{link.name}</Text>
+      {LinkItems.map((item) => (
+        <NavItem key={item.name} link={item.link}  icon={item.icon}>
+          <Text fontSize={14}>{item.name}</Text>
         </NavItem>
       ))}
     </Box>
   );
 };
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon,link , children, ...rest }) => {
   return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link href={link} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"

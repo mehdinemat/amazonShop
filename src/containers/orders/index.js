@@ -1,10 +1,11 @@
 import React from 'react'
+import Home from '../home'
 
 const index = () => {
   return (
-    <div>
-      Orders
-    </div>
+    <Home>
+      orders
+    </Home>
   )
 }
 
