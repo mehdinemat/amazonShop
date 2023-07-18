@@ -11,20 +11,22 @@ import {
 } from '@chakra-ui/react'
 const CategoryModal = (props) => {
 
-  useEffect(()=>{
-    console.log(props.isOpen)
-  },[props.isOpen])
 
-  const renderedCategoryList =(category)=>{
-    let listCategory = []
 
-    
-
-      return (
-      <>
-        </>
-      )
+  const renderedCategoryList = (category) => {
+    let categoryList = []
+    console.log(category)
+    for (let cat of category) {
+      categoryList.push(cat.name)
+      { cat.children.length > 0 && renderedCategoryList(cat) }
+    }
+    return categoryList
   }
+  const catList = renderedCategoryList(props.category)
+
+  useEffect(() => {
+    console.log(catList)
+  }, [catList])
 
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose} >
@@ -33,11 +35,9 @@ const CategoryModal = (props) => {
         <ModalHeader mr={'50px'}>افزودن عنوان</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Input placeholder='نام عنوان' size={'sm'}/>
+          <Input placeholder='نام عنوان' size={'sm'} />
           <Select mt={4}>
-            {
-              props.category.map((item)=>(renderedCategoryList(item)))
-            }
+
           </Select>
         </ModalBody>
 
@@ -45,10 +45,10 @@ const CategoryModal = (props) => {
           {/* <Button colorScheme='blue' mr={3} onClick={props.onClose}>
             Close
           </Button> */}
-          <Button variant='ghost' border={'1px'} borderColor={'blackAlpha.300'}  _hover={{
-          bg: 'cyan.400',
-          color: 'white',
-        }}>افزودن</Button>
+          <Button variant='ghost' border={'1px'} borderColor={'blackAlpha.300'} _hover={{
+            bg: 'cyan.400',
+            color: 'white',
+          }}>افزودن</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
