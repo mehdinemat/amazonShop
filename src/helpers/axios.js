@@ -1,12 +1,14 @@
 import { api } from "../urlConfig";
 import axios from "axios";
 
-const token = localStorage.getItem('token')
-
+let value
+if (typeof window !== "undefined") {
+  value = localStorage.getItem("token") || ""
+}
 const axiosInstance = axios.create({
   baseURL:api,
   headers:{
-    'Authorization':token ? 'bearer '+token :''
+    'Authorization':'bearer '+value 
   }
 })
 

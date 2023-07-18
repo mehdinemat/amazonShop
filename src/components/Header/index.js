@@ -1,46 +1,86 @@
-import { HStack , Stack, Text} from '@chakra-ui/react'
+import { HStack, Stack, Text, useColorModeValue, Flex } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector , useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { signOut } from '../../redux/actions/auth'
-const IsLoginUser= ()=>{
+const IsLoginUser = () => {
   const dispatch = useDispatch()
-  const handleSignOut = ()=>{
+  const handleSignOut = () => {
     dispatch(signOut())
   }
   return (
-    <Stack cursor={'pointer'} onClick={handleSignOut} ><Text color={'white'} >خروج</Text></Stack>
+    <NavItem>
+      <Stack cursor={'pointer'} onClick={handleSignOut} ><Text color={'black'} _groupHover={{
+      color: 'white',
+    }}>خروج</Text></Stack>
+    </NavItem>
   )
 }
-const isNLoginUser =()=>{
+const isNLoginUser = () => {
+  const isNLU = [
+    { to: '/signin', text: 'ورود' },
+    { to: '/signup', text: 'ثبت نام' }
+  ]
   return (
-   <>
-    <Link to={'/signin'} ><Text color={'white'} >ورود</Text></Link>
-    <Link to={'/signup'} ><Text color={'white'} >ثبت نام</Text></Link>
+    <>
+      {
+        isNLU.map((item) => (
+         <NavItem>
+           <Link to={item.to} ><Text color={'black'} _groupHover={{
+            color: 'white',
+          }}>{item.text}</Text></Link>
+         </NavItem>
+        ))
+      }
     </>
   )
 }
 
+const NavItem = ({ children, ...rest }) => {
+  return (
+    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+      <Flex
+        align="center"
+        p="4"
+        mx="4"
+        borderRadius="lg"
+        role="group"
+        cursor="pointer"
+        _hover={{
+          bg: 'cyan.400',
+          color: 'white',
+        }}
+        {...rest}>
+        {children}
+      </Flex>
+    </Link>
+  );
+};
+
+
 const Header = () => {
 
-  const {auth} = useSelector(state=>state)
+  const { auth } = useSelector(state => state)
 
 
- 
+
 
   return (
-      <>
+    <>
 
-      <HStack w={'100%'} height={'40px'} px={'100px'}  py={'30px'} justifyContent={'space-between'} bg={'blackAlpha.800'}  >
-          <HStack>
+      <HStack w={'100%'} height={'40px'} px={'100px'} py={'30px'} justifyContent={'space-between'} bg={'white'} borderBottom={'1px'} borderColor={'blackAlpha.200'} >
+        <HStack>
+
           {
-            auth?.authenticate ? IsLoginUser() : isNLoginUser()  
+            auth?.authenticate ? IsLoginUser() : isNLoginUser()
           }
-          </HStack>
-          <Link to={'/'} ><Text color={'white'} >داشبورد مدیریت</Text></Link>
+        </HStack>
+        <Link to={'/'} ><Text color={'black'} _groupHover={{
+          color: 'white',
+        }}>داشبورد مدیریت</Text></Link>
       </HStack>
 
-      </>
+    </>
 
   )
 }

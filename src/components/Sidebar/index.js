@@ -24,9 +24,9 @@ import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 
 const LinkItems = [
-  { name: 'Home', icon: FiHome },
-  { name: 'products', icon: FiTrendingUp },
-  { name: 'orders', icon: FiCompass },
+  { name: 'خانه', icon: FiHome },
+  { name: 'محصولات', icon: FiTrendingUp },
+  { name: 'سفارشات', icon: FiCompass },
 ];
 
 export default function SimpleSidebar({ children }) {
@@ -65,7 +65,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
     <Box
       bg={useColorModeValue('white', 'gray.900')}
       borderLeft="1px"
-      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
+      borderLeftColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
@@ -77,8 +77,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
+        <NavItem key={link.name}  icon={link.icon}>
+          <Text fontSize={14}>{link.name}</Text>
         </NavItem>
       ))}
     </Box>
@@ -101,7 +101,7 @@ const NavItem = ({ icon, children, ...rest }) => {
         {...rest}>
         {icon && (
           <Icon
-            mr="4"
+            ml="4"
             fontSize="16"
             _groupHover={{
               color: 'white',
