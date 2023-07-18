@@ -2,10 +2,11 @@ import { HStack , Stack, Text} from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector , useDispatch } from 'react-redux'
+import { signOut } from '../../redux/actions/auth'
 const IsLoginUser= ()=>{
   const dispatch = useDispatch()
   const handleSignOut = ()=>{
-    
+    dispatch(signOut())
   }
   return (
     <Stack cursor={'pointer'} onClick={handleSignOut} ><Text color={'white'} >خروج</Text></Stack>

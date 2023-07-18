@@ -24,7 +24,7 @@ export const auth = (state=initialState , action)=>{
           }
           case authConstants.SIGNOUT_REQUEST:
             return {
-              ...state, initialState
+               ...initialState
             }
       default:
        return {...state}

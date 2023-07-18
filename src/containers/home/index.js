@@ -6,7 +6,9 @@ import { Text } from '@chakra-ui/react'
 const Home = () => {
   return (
     <Layout>
+      <Sidebar>
       <Text>fsdfgd</Text>
+      </Sidebar>
     </Layout>
   )
 }

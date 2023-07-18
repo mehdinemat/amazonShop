@@ -46,7 +46,8 @@ export const isUserLoggedIn = (data)=>async(dispatch)=>{
 
 export const signOut = (data)=>async(dispatch)=>{
    try{
-
+      dispatch({type:authConstants.SIGNOUT_REQUEST})
+      localStorage.clear()
 
    }catch(err){return dispatch({type:authConstants.SIGNOUT_FAILURE , payload:{error:err.message} })}
 }

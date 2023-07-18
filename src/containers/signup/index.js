@@ -2,14 +2,16 @@ import { Center, Stack, Input, VStack, HStack, FormLabel, Button } from '@chakra
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import Layout from '../../components/Layout'
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { registerAction } from '../../redux/actions/user'
 const SignUp = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { register, handleSubmit, setValue, getValue } = useForm()
   const { auth } = useSelector(state => state)
   const handleRegisterForm = async (data) => {
-    console.log(data)
+    dispatch(registerAction(data))
   }
 
   useEffect(()=>{
@@ -23,7 +25,7 @@ const SignUp = () => {
       <Center as='form' onSubmit={handleSubmit(handleRegisterForm)} height={'80vh'} dir='rtl' >
         <VStack>
           <HStack>
-            <Input placeholder='نام' {...register('firsName')} />
+            <Input placeholder='نام' {...register('firstName')} />
             <Input placeholder='نام خانوادگی' my={'10px'} {...register('lastName')} />
           </HStack>
           <Input placeholder='ایمیل'  {...register('email')} />
