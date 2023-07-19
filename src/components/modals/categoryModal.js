@@ -16,13 +16,13 @@ const CategoryModal = (props) => {
 
   const dispatch = useDispatch()
 
-  const [ category , setCategory  ] = useState([])
+  const [ category , setCategory  ] = useState()
 
   const {register , handleSubmit } = useForm()
 
   const renderedCategoryList = (category , categoryList=[]) => {
     for (let cat of category) {
-      categoryList.push({name:cat.name})
+      categoryList.push({name:cat.name , id:cat.id})
       {  renderedCategoryList(cat.children , categoryList) }
     }
     return categoryList
@@ -33,11 +33,11 @@ const CategoryModal = (props) => {
   },[props.category])
 
  const handleSendForm = (value)=>{
-  // console.log(value.file[0].name , value.title , value.parent)
-  // const form = new FormData()
-  // form.append('categoryImage' , value.file[0].name)
-  // form.append('name' , value.title)
-  // form.append('parentId' , value.category)
+   console.log(value.file[0].name , value.title , value.parent)
+  const form = new FormData()
+  form.append('categoryImage' , value.file[0].name)
+  form.append('name' , value.title)
+  form.append('parentId' , value.parent)
   //   // dispatch(addCategory(value))
  }
 
@@ -51,8 +51,8 @@ const CategoryModal = (props) => {
           <form onSubmit={handleSubmit(handleSendForm)}>
           <Input placeholder='نام عنوان' size={'sm'} {...register('title')}/>
           <Select as={'select'} mt={4} dir='ltr' {...register('parent')}>
-           { category.map((item)=>
-             ( <option value={item.id}>{item}</option>)
+           {category && category.map((item)=>
+             ( <option value={item.id}>{item.name}</option>)
             ) }
           </Select>
           <Input type='file' mt={4} {...register('file')}/>
