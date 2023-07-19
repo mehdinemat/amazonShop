@@ -10,17 +10,19 @@ import {
   ModalCloseButton, Button, Input, Select, FormControl
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
-
+import { addCategory } from '../../redux/actions/category'
+import { useDispatch } from 'react-redux'
 const CategoryModal = (props) => {
+
+  const dispatch = useDispatch()
 
   const [ category , setCategory  ] = useState([])
 
   const {register , handleSubmit } = useForm()
 
   const renderedCategoryList = (category , categoryList=[]) => {
-   
     for (let cat of category) {
-      categoryList.push(cat.name)
+      categoryList.push({name:cat.name})
       {  renderedCategoryList(cat.children , categoryList) }
     }
     return categoryList
@@ -28,11 +30,15 @@ const CategoryModal = (props) => {
 
   useEffect(()=>{
     setCategory(renderedCategoryList(props.category))
-  },[])
+  },[props.category])
 
  const handleSendForm = (value)=>{
-  console.log(value.file[0].name , value.title , value.parent)
-  
+  // console.log(value.file[0].name , value.title , value.parent)
+  // const form = new FormData()
+  // form.append('categoryImage' , value.file[0].name)
+  // form.append('name' , value.title)
+  // form.append('parentId' , value.category)
+  //   // dispatch(addCategory(value))
  }
 
   return (
@@ -46,7 +52,7 @@ const CategoryModal = (props) => {
           <Input placeholder='نام عنوان' size={'sm'} {...register('title')}/>
           <Select as={'select'} mt={4} dir='ltr' {...register('parent')}>
            { category.map((item)=>
-             ( <option value={item}>{item}</option>)
+             ( <option value={item.id}>{item}</option>)
             ) }
           </Select>
           <Input type='file' mt={4} {...register('file')}/>

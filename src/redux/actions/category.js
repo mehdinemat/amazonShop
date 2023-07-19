@@ -14,3 +14,15 @@ import {categoryConstants} from './constants'
   }catch(err){return dispatch({type:categoryConstants.CATEGORY_FAILURE , payload:{error:err.message}})}
 
  }
+ 
+ export const addCategory = (data)=>async(dispatch)=>{
+  console.log(value.file[0].name , value.title , value.parent)
+
+  try{
+    console.log(data)
+    // dispatch({type:categoryConstants.ADD_CATEGORY_REQUEST})
+    // const res = await axiosInstance.post('/category/create' , {})
+
+  }catch(err){dispatch({type:categoryConstants.ADD_CATEGORY_FAILURE , payload:{error:err.message}})}
+
+ }

@@ -38,23 +38,25 @@ const Index = () => {
 
   return (
     <Home>
-      <CategoryModal
-        isOpen={isOpen}
-        onClose={onClose} category={category?.categories} />
+      {
+        category?.categories && <CategoryModal
+          isOpen={isOpen}
+          onClose={onClose} category={category?.categories} />
+      }
 
       <HStack w={'100%'} justifyContent={'space-between'} alignItems={'start'}>
-     
-      <OrderedList>
-        {
-          category && category?.categories.map((item) => (
-            renderedCategory(item)
-          ))
-        }
-      </OrderedList>
-      <Button onClick={onOpen} backgroundColor={'white'} border={'1px'} borderColor={'blackAlpha.300'} _hover={{
-        bg: 'cyan.400',
-        color: 'white',
-      }}>افزودن عنوان</Button>
+
+        <OrderedList>
+          {
+            category && category?.categories.map((item) => (
+              renderedCategory(item)
+            ))
+          }
+        </OrderedList>
+        <Button onClick={onOpen} backgroundColor={'white'} border={'1px'} borderColor={'blackAlpha.300'} _hover={{
+          bg: 'cyan.400',
+          color: 'white',
+        }}>افزودن عنوان</Button>
 
       </HStack>
 
