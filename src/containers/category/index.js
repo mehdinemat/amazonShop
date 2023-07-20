@@ -27,7 +27,7 @@ const Index = () => {
 
     return (
       <ListItem>{category?.name}
-        {<OrderedList>{category?.children.map((item) => (renderedCategory(item)))}</OrderedList>}
+        {<OrderedList>{category?.children?.length > 0 && category?.children?.map((item) => (renderedCategory(item)))}</OrderedList>}
       </ListItem>
     )
 

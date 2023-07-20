@@ -33,12 +33,11 @@ const CategoryModal = (props) => {
   },[props.category])
 
  const handleSendForm = (value)=>{
-   console.log(value.file[0].name , value.title , value.parent)
   const form = new FormData()
-  form.append('categoryImage' , value.file[0].name)
+  form.append('categoryImage' , value.file[0])
   form.append('name' , value.title)
   form.append('parentId' , value.parent)
-  //   // dispatch(addCategory(value))
+  dispatch(addCategory(form))
  }
 
   return (
