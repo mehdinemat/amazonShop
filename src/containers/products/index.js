@@ -46,6 +46,9 @@ const Index = () => {
                 <Th>#</Th>
                 <Th>نام</Th>
                 <Th isNumeric>قیمت</Th>
+                <Th isNumeric>تعداد</Th>
+                <Th >توضیحات</Th>
+                <Th >عنوان</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -55,6 +58,9 @@ const Index = () => {
         <Td>{index + 1}</Td>
         <Td>{item.name}</Td>
         <Td isNumeric>{item.price}</Td>
+        <Td isNumeric>{item.quantity}</Td>
+        <Td isNumeric>{item.description}</Td>
+        <Td isNumeric>{item.category}</Td>
       </Tr>
              )) 
               }
