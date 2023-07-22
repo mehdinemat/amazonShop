@@ -14,7 +14,7 @@ import {
 import ProductModal from '../../components/modals/productModal'
 import { useSelector, useDispatch } from 'react-redux'
 import { categories } from '../../redux/actions/category'
-import { getProduct } from '../../redux/actions/product'
+import { initialData } from '../../redux/actions/initialData'
 const Index = () => {
   const dispatch = useDispatch()
 
@@ -25,7 +25,7 @@ const Index = () => {
   const [productList,setProductList] = useState()
 
   useEffect(() => {
-    dispatch(getProduct())
+    dispatch(initialData())
     dispatch(categories())
   }, [])
   
