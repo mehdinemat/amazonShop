@@ -11,25 +11,30 @@ import {
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { addCategory } from '../../redux/actions/category'
-import { useDispatch } from 'react-redux'
+import { useDispatch , useSelector } from 'react-redux'
 const CategoryModal = (props) => {
 
   const dispatch = useDispatch()
+
+  const {category1} = useState(state=>state)
 
   const [ category , setCategory  ] = useState()
 
   const {register , handleSubmit } = useForm()
 
-  const renderedCategoryList = (category , categoryList=[]) => {
+  const renderedCategoryList = (category=[] , categoryList=[]) => {
     for (let cat of category) {
-      categoryList.push({name:cat.name , id:cat.id})
+      categoryList.push({name:cat?.name , id:cat?.id || cat?._id})
       {  renderedCategoryList(cat.children , categoryList) }
     }
     return categoryList
   }
 
   useEffect(()=>{
-    setCategory(renderedCategoryList(props.category))
+    if(props.category !== undefined)
+    {
+      setCategory(renderedCategoryList(props.category))
+    }
   },[props.category])
 
  const handleSendForm = (value)=>{
@@ -38,6 +43,7 @@ const CategoryModal = (props) => {
   form.append('name' , value.title)
   form.append('parentId' , value.parent)
   dispatch(addCategory(form))
+  props.onClose(true)
  }
 
   return (

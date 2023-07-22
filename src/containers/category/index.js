@@ -39,7 +39,7 @@ const Index = () => {
   return (
     <Home>
       {
-        category?.categories && <CategoryModal
+       category?.categories && <CategoryModal
           isOpen={isOpen}
           onClose={onClose} category={category?.categories} />
       }
