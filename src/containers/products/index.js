@@ -14,32 +14,21 @@ import {
 import ProductModal from '../../components/modals/productModal'
 import { useSelector, useDispatch } from 'react-redux'
 import { categories } from '../../redux/actions/category'
+import { getProduct } from '../../redux/actions/product'
 const Index = () => {
   const dispatch = useDispatch()
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const { category } = useSelector(state => state)
+  const { category , product } = useSelector(state => state)
 
-  const [categoryList, setCategoryList] = useState()
+  const [productList,setProductList] = useState()
 
   useEffect(() => {
+    dispatch(getProduct())
     dispatch(categories())
   }, [])
-
-  useEffect(() => {
-    if (category !== undefined) {
-      setCategoryList(renderedCategoryList(category?.categories))
-    }
-  }, [category])
-
-  const renderedCategoryList = (category = [], categoryList = []) => {
-    for (let cat of category) {
-      categoryList.push({ name: cat?.name, id: cat?.id || cat?._id , quantity:cat?.quantity })
-      { renderedCategoryList(cat.children, categoryList) }
-    }
-    return categoryList
-  }
+  
 
   return (
     <Home>
@@ -61,7 +50,13 @@ const Index = () => {
             </Thead>
             <Tbody>
               {
-             
+             product?.products.map((item , index)=>(
+              <Tr>
+        <Td>{index + 1}</Td>
+        <Td>{item.name}</Td>
+        <Td isNumeric>{item.price}</Td>
+      </Tr>
+             )) 
               }
 
             </Tbody>
