@@ -12,6 +12,7 @@ import {
   TableContainer, VStack
 } from '@chakra-ui/react'
 import ProductModal from '../../components/modals/productModal'
+import DetailProduct from '../../components/modals/detailProduct'
 import { useSelector, useDispatch } from 'react-redux'
 import { categories } from '../../redux/actions/category'
 import { initialData } from '../../redux/actions/initialData'
@@ -19,16 +20,23 @@ const Index = () => {
   const dispatch = useDispatch()
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: detailsIsOpen, onOpen: detailsOnOpen, onClose: detailsOnClose } = useDisclosure()
 
-  const { category , product } = useSelector(state => state)
+  const { category, product } = useSelector(state => state)
+  const [productDetails , setProductDetails ] = useState()
 
-  const [productList,setProductList] = useState()
+  const [productList, setProductList] = useState()
 
   useEffect(() => {
     dispatch(initialData())
     dispatch(categories())
   }, [])
-  
+
+  const handelProductClick = (item)=>{
+    setProductDetails(item)
+    detailsOnOpen(true)
+  }
+
 
   return (
     <Home>
@@ -53,16 +61,16 @@ const Index = () => {
             </Thead>
             <Tbody>
               {
-             product?.products.map((item , index)=>(
-              <Tr>
-        <Td>{index + 1}</Td>
-        <Td>{item.name}</Td>
-        <Td isNumeric>{item.price}</Td>
-        <Td isNumeric>{item.quantity}</Td>
-        <Td isNumeric>{item.description}</Td>
-        <Td isNumeric>{item.category}</Td>
-      </Tr>
-             )) 
+                product?.products.map((item, index) => (
+                  <Tr onClick={()=>handelProductClick(item)}>
+                    <Td>{index + 1}</Td>
+                    <Td>{item.name}</Td>
+                    <Td isNumeric>{item.price}</Td>
+                    <Td isNumeric>{item.quantity}</Td>
+                    <Td isNumeric>{item.description}</Td>
+                    <Td isNumeric>{item.category.name}</Td>
+                  </Tr>
+                ))
               }
 
             </Tbody>
@@ -80,6 +88,11 @@ const Index = () => {
       {
         category?.categories && <ProductModal onClose={onClose} isOpen={isOpen}
           category={category?.categories} />}
+      {
+        productDetails && <DetailProduct onClose={detailsOnClose}
+        isOpen={detailsIsOpen} productDetails={productDetails}
+        />
+      }
     </Home>
   )
 }
